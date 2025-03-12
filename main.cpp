@@ -8,16 +8,17 @@ using namespace std;
 #define n 10
 vector<thread> ThreadVector;
 mutex mtx;
-vector<int> status;
+vector<int> status(n,2);
 
 void dining(int id)
 {
     while (true)
     {
         {
+            this_thread::sleep_for(chrono::milliseconds(500));
             lock_guard<mutex> lock(mtx);
-            status[id]++;
-            //cout << "PHILOSOPHER: " << id << " IS THINKING" << endl;
+            lock_guard<mutex> unlock(mtx);
+           
         }
         this_thread::sleep_for(chrono::milliseconds(500));
     }
@@ -27,10 +28,7 @@ void dining(int id)
 
 int main()
 {
-    for(int i=0;i<n;i++)
-   {
-    status.push_back(i);
-   }
+    
    for(int i=0;i<n;i++)
    {
     ThreadVector.emplace_back(dining,i);
@@ -41,8 +39,14 @@ int main()
     {
         system("cls");
        
-        for(int i=0;i<n;i++){
-        cout << "PHILOSOPHER: " << status[i] << " IS THINKING" << endl;
+        for (int i = 0; i < n; i++) {
+            if (status[i] == 0) {
+                cout << "PHILOSOPHER: " << i << " IS EATING" << endl;
+            } else if (status[i] == 1) {
+                cout << "PHILOSOPHER: " << i << " IS HUNGRY" << endl;
+            } else {
+                cout << "PHILOSOPHER: " << i << " IS THINKING" << endl;
+            }
         }
         this_thread::sleep_for(chrono::milliseconds(500));
     }
