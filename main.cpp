@@ -3,24 +3,44 @@
 #include<mutex>
 #include<vector>
 #include <stdlib.h> 
+#include<condition_variable>
 using namespace std;
 
 #define n 10
 vector<thread> ThreadVector;
 mutex mtx;
+vector<condition_variable> varPhi(n);
 vector<int> status(n,2);
 
 void dining(int id)
 {
     while (true)
     {
+        this_thread::sleep_for(chrono::milliseconds(1000));
         {
-            this_thread::sleep_for(chrono::milliseconds(500));
-            lock_guard<mutex> lock(mtx);
-            lock_guard<mutex> unlock(mtx);
            
+            unique_lock<mutex> lock(mtx);
+            status[id]=1;
+
+            while (status[(id+1)%n]==0 || status[(id+n-1)%n]==0)
+            {
+                varPhi[id].wait(lock);
+            }
+            
+           status[id]=0;
         }
-        this_thread::sleep_for(chrono::milliseconds(500));
+        
+
+        this_thread::sleep_for(chrono::milliseconds(1000));
+        {
+
+            lock_guard<mutex> lock(mtx);
+            status[id]=2;
+
+            varPhi[(id+1)%n].notify_one();
+            varPhi[(id+n-1)%n].notify_one();
+
+        }
     }
     
     
