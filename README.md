@@ -14,5 +14,6 @@ Symulacja klasycznego problemu ucztujących filozofów, gdzie filozofowie muszą
 
 ## Sekcje Krytyczne
 - **Uzyskanie dostępu do widelców**: Synchronizacja za pomocą `mutex` i `condition_variable`, aby zapewnić, że sąsiedzi nie jedzą jednocześnie.
+- `condition_variable` sprawia że filozof nie musi ciągle sprawdzac dostępnosci widelca tylko jest powiadamiany
 - **Unikanie zakleszczeń**: Filozof czeka, aż oba widelce będą dostępne i dopiero wtedy podnosi a, po zakończeniu jedzenia powiadamia sąsiadów o zwolnieniu zasobów.
 
