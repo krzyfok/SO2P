@@ -31,17 +31,17 @@ g++ Client.cpp -o Client -lws2_32
 Prosty czat Klient-Serwer z wykorzystaniem socektow TCP. Pozwala na komunikacje wielu klientów jednoczesnie dzięki wielkowątkowsci i synchronizacji do zasobów współdzielonych.
 
 ## Wątki
--Wątek główny (serwer): nasłuchuje na połączenia i tworzy nowe wątki dla klientów.
--Wątek klienta (dla każdego połączenia): obsługuje komunikację z jednym klientem.
--Wątek klienta (aplikacja kliencka) nasłuchujący: obsługuje odbieranie danych z serwera.
--Wątek klienta główny: obsługuje wysyłanie danych do serwera.
+- Wątek główny (serwer): nasłuchuje na połączenia i tworzy nowe wątki dla klientów.
+- Wątek klienta (dla każdego połączenia): obsługuje komunikację z jednym klientem.
+- Wątek klienta (aplikacja kliencka) nasłuchujący: obsługuje odbieranie danych z serwera.
+- Wątek klienta główny: obsługuje wysyłanie danych do serwera.
 
 ## Sekcje Krytyczne
--Odczytywanie historii czatu
--Dodawanie wiadomosci do historii czatu
--Wysyłanie wiadomosci do klientów
--Dodawanie klientów
--Usuwanie klientów
+- Odczytywanie historii czatu
+- Dodawanie wiadomosci do historii czatu
+- Wysyłanie wiadomosci do klientów
+- Dodawanie klientów
+- Usuwanie klientów
 ## Unikanie zakleszczen
 Kazda sekcja korzysta tylko z jednego mutexa, brak oczekiwania na zasoby.
 
