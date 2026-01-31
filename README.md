@@ -4,7 +4,7 @@ This repository contains two separate projects:
 
 1.  Chat Server  – a multithreaded TCP client-server chat application.
     
-2.  Dining Philosophers 🍴 – a simulation of the classical Dining Philosophers problem using threads.
+2.  Dining Philosophers  – a simulation of the classical Dining Philosophers problem using threads.
     
 
 * * *
