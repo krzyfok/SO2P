@@ -62,11 +62,11 @@ Threads :
 
 -   Each philosopher is a separate thread that cycles through:
     
-    1.  Thinking 
+      Thinking 
         
-    2.  Becoming hungry 
+      Becoming hungry 
         
-    3.  Trying to eat 
+      Trying to eat 
         
 
 Critical Sections :
